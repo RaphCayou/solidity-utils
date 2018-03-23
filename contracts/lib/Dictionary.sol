@@ -76,7 +76,14 @@ library DictionaryUint {
     }
 
     function set(Data storage self, uint id, bytes data) internal {
+        if (self, exists(id)) {
+            self.list[id].data = data;
+        }
         insertEnd(self, id, data);
+    }
+
+    function exists(Data storage self, bytes32 id) internal returns (bool) {
+        return self.list[id].initialized;
     }
 
     function get(Data storage self, uint id) internal view returns (bytes) {
@@ -198,7 +205,14 @@ library DictionaryBytes32 {
     }
 
     function set(Data storage self, bytes32 id, bytes data) internal {
+        if (self, exists(id)) {
+            self.list[id].data = data;
+        }
         insertEnd(self, id, data);
+    }
+
+    function exists(Data storage self, bytes32 id) internal returns (bool) {
+        return self.list[id].initialized;
     }
 
     function get(Data storage self, bytes32 id) internal view returns (bytes) {
