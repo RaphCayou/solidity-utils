@@ -1,1 +1,6 @@
-*.rb linguist-language=Solidity
+*.sol linguist-language=Solidity
+migrations/* linguist-vendored
+node_modules/* linguist-vendored
+test/* linguist-vendored
+*.json linguist-vendored
+*.js linguist-vendored
