@@ -1,5 +1,9 @@
 # solidity-utils
-This library has some basic missing utils in Solidity. 
+This library implements the missing usable and iterable dictionary in solidity.  
+Current implementations:
+ * dic(uint, bytes)
+ * dic(bytes32, bytes)
+ * dic(bytes32, uint)
 
 ## Dictionary
 `mapping` + keys iteration.  
@@ -10,9 +14,9 @@ The data-stucture combines linked-list iteration style with solidity `mapping` h
 ```sol
 pragma solidity ^0.4.0;
 // import the contract
-import "github.com/sagivo/solidity-utils/contracts/lib/Dictionary.sol";
+import "github.com/RaphCayou/solidity-utils/contracts/lib/Dictionary.sol";
 
-contract Foo {
+contract FooUint {
     // declare and use new Dictionary structure
     using Dictionary for Dictionary.Data;
     Dictionary.Data private dic;
@@ -22,8 +26,48 @@ contract Foo {
         dic.set(2, "foo");
         // get an item
         dic.get(2); // => '0x666f6f' (byte hex of 'foo')
+        // update an item's value
+        dic.set(2, "value");
         // get all keys
         dic.keys(); // => [1, 2]
+        // check if key exists
+        var exists = dic.exists(1);
+    }
+}
+contract FooBytes32 {
+    // declare and use new Dictionary structure
+    using DictionaryBytes32 for DictionaryBytes32.Data;
+    DictionaryBytes32.Data private dic;
+
+    function Foo() public view returns (uint) {
+        dic.set(0xab12, "value");
+        dic.set(0x45ba, "foo");
+        // get an item
+        dic.get(0x45ba); // => '0x666f6f' (byte hex of 'foo')
+        // update an item's value
+        dic.set(0x45ba, "value");
+        // get all keys
+        dic.keys(); // => [0xab12, 0x45ba]
+        // check if key exists
+        dic.exists(0xab12); // => true
+    }
+}
+contract FooBytes32Uint {
+    // declare and use new Dictionary structure
+    using DictionaryBytes32Uint for DictionaryBytes32Uint.Data;
+    DictionaryBytes32Uint.Data private dic;
+
+    function Foo() public view returns (uint) {
+        dic.set(0xab12, 1);
+        dic.set(0x45ba, 2);
+        // get an item
+        dic.get(0x45ba); // => 2
+        // update an item's value
+        dic.set(0x45ba, 3);
+        // get all keys
+        dic.keys(); // => [0xab12, 0x45ba]
+        // check if key exists
+        dic.exists(0xab12); // => true
     }
 }
 ```
