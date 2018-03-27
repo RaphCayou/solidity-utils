@@ -76,7 +76,7 @@ library DictionaryUint {
     }
 
     function set(Data storage self, uint id, bytes data) internal {
-        if (self, exists(id)) {
+        if (self.exists(id)) {
             self.list[id].data = data;
         }
         insertEnd(self, id, data);
@@ -205,7 +205,7 @@ library DictionaryBytes32 {
     }
 
     function set(Data storage self, bytes32 id, bytes data) internal {
-        if (self, exists(id)) {
+        if (self.exists(id)) {
             self.list[id].data = data;
         }
         insertEnd(self, id, data);
