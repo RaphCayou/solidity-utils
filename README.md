@@ -77,6 +77,19 @@ contract FooBytes32Uint {
 `get(uint id) --> bytes data`  
 `remove(uint id)`  
 `getSize() --> uint num of keys`  
+`exists(uint id) --> bool id exists`  
+
+`set(bytes32 id, bytes data)`  
+`get(bytes32 id) --> bytes data`  
+`remove(bytes32 id)`  
+`getSize() --> uint num of keys`  
+`exists(bytes32 id) --> bool id exists`  
+
+`set(bytes32 id, uint data)`  
+`get(bytes32 id) --> uint data`  
+`remove(bytes32 id)`  
+`getSize() --> uint num of keys`  
+`exists(bytes32 id) --> bool id exists`  
 
 ### Iteration operations
 Keys are stored based on the order you specify, allows you to iterate over keys.  
