@@ -82,7 +82,7 @@ library DictionaryUint {
         insertEnd(self, id, data);
     }
 
-    function exists(Data storage self, uint id) internal returns (bool) {
+    function exists(Data storage self, uint id) internal view returns (bool) {
         return self.list[id].initialized;
     }
 
@@ -211,7 +211,7 @@ library DictionaryBytes32 {
         insertEnd(self, id, data);
     }
 
-    function exists(Data storage self, bytes32 id) internal returns (bool) {
+    function exists(Data storage self, bytes32 id) internal view returns (bool) {
         return self.list[id].initialized;
     }
 
@@ -340,7 +340,7 @@ library DictionaryBytes32Uint {
         insertEnd(self, id, data);
     }
 
-    function exists(Data storage self, bytes32 id) internal returns (bool) {
+    function exists(Data storage self, bytes32 id) internal view returns (bool) {
         return self.list[id].initialized;
     }
 
